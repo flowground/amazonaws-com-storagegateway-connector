@@ -1,0 +1,76 @@
+{
+    "type": "object",
+    "properties": {
+        "Limit": {
+            "required": false,
+            "type": "string"
+        },
+        "Marker": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "DescribeTapeArchivesInput",
+            "example": {
+                "Limit": 123,
+                "Marker": "1",
+                "TapeARNs": [
+                    "arn:aws:storagegateway:us-east-1:999999999999:tape/AM08A1AD",
+                    "arn:aws:storagegateway:us-east-1:999999999999:tape/AMZN01A2A4"
+                ]
+            },
+            "properties": {
+                "Limit": {
+                    "description": "Specifies that the number of virtual tapes descried be limited to the specified number.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "Marker": {
+                    "description": "An opaque string that indicates the position at which to begin describing virtual tapes.",
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "TapeARNs": {
+                    "description": "Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe.",
+                    "items": {
+                        "maxLength": 500,
+                        "minLength": 50,
+                        "pattern": "^arn:(aws|aws-cn|aws-us-gov):storagegateway:[a-z\\-0-9]+:[0-9]+:tape\\/[0-9A-Z]{7,16}$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

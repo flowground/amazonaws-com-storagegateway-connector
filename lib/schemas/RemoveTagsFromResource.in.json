@@ -1,0 +1,74 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "RemoveTagsFromResourceInput",
+            "example": {
+                "ResourceARN": "arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-11A2222B",
+                "TagKeys": [
+                    "Dev Gatgeway Region",
+                    "East Coast"
+                ]
+            },
+            "properties": {
+                "ResourceARN": {
+                    "description": "The Amazon Resource Name (ARN) of the resource you want to remove the tags from.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "TagKeys": {
+                    "description": "The keys of the tags you want to remove from the specified resource. A tag is composed of a key/value pair.",
+                    "items": {
+                        "maxLength": 128,
+                        "minLength": 1,
+                        "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "ResourceARN",
+                "TagKeys"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

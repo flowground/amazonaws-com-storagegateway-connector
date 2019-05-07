@@ -1,0 +1,95 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "JoinDomainInput",
+            "properties": {
+                "DomainControllers": {
+                    "description": "List of IPv4 addresses, NetBIOS names, or host names of your domain server. If you need to specify the port number include it after the colon (“:”). For example, <code>mydc.mydomain.com:389</code>.",
+                    "items": {
+                        "pattern": "^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(:(\\d+))?$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "DomainName": {
+                    "description": "The name of the domain that you want the gateway to join.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "pattern": "^([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}$",
+                    "type": "string"
+                },
+                "GatewayARN": {
+                    "description": "The Amazon Resource Name (ARN) of the gateway. Use the <code>ListGateways</code> operation to return a list of gateways for your account and region.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "OrganizationalUnit": {
+                    "description": "The organizational unit (OU) is a container with an Active Directory that can hold users, groups, computers, and other OUs and this parameter specifies the OU that the gateway will join within the AD domain.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "Password": {
+                    "description": "Sets the password of the user who has permission to add the gateway to the Active Directory domain.",
+                    "format": "password",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "pattern": "^[ -~]+$",
+                    "type": "string"
+                },
+                "UserName": {
+                    "description": "Sets the user name of user who has permission to add the gateway to the Active Directory domain.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "pattern": "^\\w[\\w\\.\\- ]*$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GatewayARN",
+                "DomainName",
+                "UserName",
+                "Password"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "ListTagsForResourceInput",
+            "example": {
+                "Limit": 1,
+                "Marker": "1",
+                "ResourceARN": "arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-11A2222B"
+            },
+            "properties": {
+                "Limit": {
+                    "description": "Specifies that the list of tags returned be limited to the specified number of items.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "Marker": {
+                    "description": "An opaque string that indicates the position at which to begin returning the list of tags.",
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "ResourceARN": {
+                    "description": "The Amazon Resource Name (ARN) of the resource for which you want to list tags.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ResourceARN"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

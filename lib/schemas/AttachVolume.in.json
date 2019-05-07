@@ -1,0 +1,82 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "AttachVolumeInput",
+            "properties": {
+                "DiskId": {
+                    "description": "The unique device ID or other distinguishing data that identifies the local disk used to create the volume. This value is only required when you are attaching a stored volume.",
+                    "maxLength": 300,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "GatewayARN": {
+                    "description": "The Amazon Resource Name (ARN) of the gateway that you want to attach the volume to.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "NetworkInterfaceId": {
+                    "description": "<p>The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted. Use <a>DescribeGatewayInformation</a> to get a list of the network interfaces available on a gateway.</p> <p> Valid Values: A valid IP address.</p>",
+                    "pattern": "\\A(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}\\z",
+                    "type": "string"
+                },
+                "TargetName": {
+                    "description": "<p>The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN. For example, specifying <code>TargetName</code> as <i>myvolume</i> results in the target ARN of <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume</code>. The target name must be unique across all volumes on a gateway.</p> <p>If you don't specify a value, Storage Gateway uses the value that was previously used for this volume as the new target name.</p>",
+                    "maxLength": 200,
+                    "minLength": 1,
+                    "pattern": "^[-\\.;a-z0-9]+$",
+                    "type": "string"
+                },
+                "VolumeARN": {
+                    "description": "The Amazon Resource Name (ARN) of the volume to attach to the specified gateway.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GatewayARN",
+                "VolumeARN",
+                "NetworkInterfaceId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

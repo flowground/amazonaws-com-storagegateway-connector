@@ -1,0 +1,119 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "UpdateSMBFileShareInput",
+            "properties": {
+                "DefaultStorageClass": {
+                    "description": "The default storage class for objects put into an Amazon S3 bucket by the file gateway. Possible values are <code>S3_STANDARD</code>, <code>S3_STANDARD_IA</code>, or <code>S3_ONEZONE_IA</code>. If this field is not populated, the default value <code>S3_STANDARD</code> is used. Optional.",
+                    "maxLength": 20,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "FileShareARN": {
+                    "description": "The Amazon Resource Name (ARN) of the SMB file share that you want to update.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "GuessMIMETypeEnabled": {
+                    "description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, and otherwise to false. The default value is true.",
+                    "type": "boolean"
+                },
+                "InvalidUserList": {
+                    "description": "A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.",
+                    "items": {
+                        "maxLength": 64,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                "KMSEncrypted": {
+                    "description": "True to use Amazon S3 server side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional.",
+                    "type": "boolean"
+                },
+                "KMSKey": {
+                    "description": "The Amazon Resource Name (ARN) of the AWS KMS key used for Amazon S3 server side encryption. This value can only be set when KMSEncrypted is true. Optional.",
+                    "maxLength": 2048,
+                    "minLength": 7,
+                    "type": "string"
+                },
+                "ObjectACL": {
+                    "description": "A value that sets the access control list permission for objects in the S3 bucket that a file gateway puts objects into. The default value is \"private\".",
+                    "enum": [
+                        "private",
+                        "public-read",
+                        "public-read-write",
+                        "authenticated-read",
+                        "bucket-owner-read",
+                        "bucket-owner-full-control",
+                        "aws-exec-read"
+                    ],
+                    "type": "string"
+                },
+                "ReadOnly": {
+                    "description": "A value that sets the write status of a file share. This value is true if the write status is read-only, and otherwise false.",
+                    "type": "boolean"
+                },
+                "RequesterPays": {
+                    "description": "A value that sets the access control list permission for objects in the Amazon S3 bucket that a file gateway puts objects into. The default value is <code>private</code>.",
+                    "type": "boolean"
+                },
+                "ValidUserList": {
+                    "description": "A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.",
+                    "items": {
+                        "maxLength": 64,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 0,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "FileShareARN"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

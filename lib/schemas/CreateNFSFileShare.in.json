@@ -1,0 +1,192 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "CreateNFSFileShareInput",
+            "properties": {
+                "ClientList": {
+                    "description": "The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. ",
+                    "items": {
+                        "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))?$",
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "ClientToken": {
+                    "description": "A unique string value that you supply that is used by file gateway to ensure idempotent file share creation.",
+                    "maxLength": 100,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "DefaultStorageClass": {
+                    "description": "The default storage class for objects put into an Amazon S3 bucket by the file gateway. Possible values are <code>S3_STANDARD</code>, <code>S3_STANDARD_IA</code>, or <code>S3_ONEZONE_IA</code>. If this field is not populated, the default value <code>S3_STANDARD</code> is used. Optional.",
+                    "maxLength": 20,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "GatewayARN": {
+                    "description": "The Amazon Resource Name (ARN) of the file gateway on which you want to create a file share.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "GuessMIMETypeEnabled": {
+                    "description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, and otherwise to false. The default value is true.",
+                    "type": "boolean"
+                },
+                "KMSEncrypted": {
+                    "description": "True to use Amazon S3 server side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional.",
+                    "type": "boolean"
+                },
+                "KMSKey": {
+                    "description": "The Amazon Resource Name (ARN) AWS KMS key used for Amazon S3 server side encryption. This value can only be set when KMSEncrypted is true. Optional.",
+                    "maxLength": 2048,
+                    "minLength": 7,
+                    "type": "string"
+                },
+                "LocationARN": {
+                    "description": "The ARN of the backed storage used for storing file data. ",
+                    "maxLength": 310,
+                    "minLength": 16,
+                    "type": "string"
+                },
+                "NFSFileShareDefaults": {
+                    "description": "File share default values. Optional.",
+                    "properties": {
+                        "DirectoryMode": {
+                            "description": "The Unix directory mode in the form \"nnnn\". For example, \"0666\" represents the default access mode for all directories inside the file share. The default value is 0777.",
+                            "maxLength": 4,
+                            "minLength": 1,
+                            "pattern": "^[0-7]{4}$",
+                            "type": "string"
+                        },
+                        "FileMode": {
+                            "description": "The Unix file mode in the form \"nnnn\". For example, \"0666\" represents the default file mode inside the file share. The default value is 0666. ",
+                            "maxLength": 4,
+                            "minLength": 1,
+                            "pattern": "^[0-7]{4}$",
+                            "type": "string"
+                        },
+                        "GroupId": {
+                            "description": "The default group ID for the file share (unless the files have another group ID specified). The default value is nfsnobody. ",
+                            "maximum": 4294967294,
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        "OwnerId": {
+                            "description": "The default owner ID for files in the file share (unless the files have another owner ID specified). The default value is nfsnobody. ",
+                            "maximum": 4294967294,
+                            "minimum": 0,
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "ObjectACL": {
+                    "description": "A value that sets the access control list permission for objects in the S3 bucket that a file gateway puts objects into. The default value is \"private\".",
+                    "enum": [
+                        "private",
+                        "public-read",
+                        "public-read-write",
+                        "authenticated-read",
+                        "bucket-owner-read",
+                        "bucket-owner-full-control",
+                        "aws-exec-read"
+                    ],
+                    "type": "string"
+                },
+                "ReadOnly": {
+                    "description": "A value that sets the write status of a file share. This value is true if the write status is read-only, and otherwise false.",
+                    "type": "boolean"
+                },
+                "RequesterPays": {
+                    "description": "A value that sets the access control list permission for objects in the Amazon S3 bucket that a file gateway puts objects into. The default value is <code>private</code>.",
+                    "type": "boolean"
+                },
+                "Role": {
+                    "description": "The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage. ",
+                    "maxLength": 2048,
+                    "minLength": 20,
+                    "type": "string"
+                },
+                "Squash": {
+                    "description": "<p>Maps a user to anonymous user. Valid options are the following: </p> <ul> <li> <p> <code>RootSquash</code> - Only root is mapped to anonymous user.</p> </li> <li> <p> <code>NoSquash</code> - No one is mapped to anonymous user</p> </li> <li> <p> <code>AllSquash</code> - Everyone is mapped to anonymous user.</p> </li> </ul>",
+                    "maxLength": 15,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "Tags": {
+                    "description": "<p>A list of up to ten (10) tags can be assigned to the NFS file share. Every tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
+                    "items": {
+                        "description": "A key-value pair that helps you manage, filter, and search for your resource. Allowed characters: letters, white space, and numbers, representable in UTF-8, and the following characters: + - = . _ : /",
+                        "properties": {
+                            "Key": {
+                                "description": "Tag key (String). The key can't start with aws:. ",
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+                                "type": "string"
+                            },
+                            "Value": {
+                                "description": "Value of the tag key.",
+                                "maxLength": 256,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Key",
+                            "Value"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "ClientToken",
+                "GatewayARN",
+                "Role",
+                "LocationARN"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

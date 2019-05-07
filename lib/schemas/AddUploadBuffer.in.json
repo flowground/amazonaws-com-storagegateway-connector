@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "DiskIds": [
+                    "pci-0000:03:00.0-scsi-0:0:0:0",
+                    "pci-0000:03:00.0-scsi-0:0:1:0"
+                ],
+                "GatewayARN": "arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B"
+            },
+            "properties": {
+                "DiskIds": {
+                    "description": "An array of strings that identify disks that are to be configured as working storage. Each string have a minimum length of 1 and maximum length of 300. You can get the disk IDs from the <a>ListLocalDisks</a> API.",
+                    "items": {
+                        "maxLength": 300,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "GatewayARN": {
+                    "description": "The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a> operation to return a list of gateways for your account and region.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GatewayARN",
+                "DiskIds"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

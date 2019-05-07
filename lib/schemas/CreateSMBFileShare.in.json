@@ -1,0 +1,172 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "CreateSMBFileShareInput",
+            "properties": {
+                "Authentication": {
+                    "description": "<p>The authentication method that users use to access the file share.</p> <p>Valid values are <code>ActiveDirectory</code> or <code>GuestAccess</code>. The default is <code>ActiveDirectory</code>.</p>",
+                    "maxLength": 15,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "ClientToken": {
+                    "description": "A unique string value that you supply that is used by file gateway to ensure idempotent file share creation.",
+                    "maxLength": 100,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "DefaultStorageClass": {
+                    "description": "The default storage class for objects put into an Amazon S3 bucket by the file gateway. Possible values are <code>S3_STANDARD</code>, <code>S3_STANDARD_IA</code>, or <code>S3_ONEZONE_IA</code>. If this field is not populated, the default value <code>S3_STANDARD</code> is used. Optional.",
+                    "maxLength": 20,
+                    "minLength": 5,
+                    "type": "string"
+                },
+                "GatewayARN": {
+                    "description": "The Amazon Resource Name (ARN) of the file gateway on which you want to create a file share.",
+                    "maxLength": 500,
+                    "minLength": 50,
+                    "type": "string"
+                },
+                "GuessMIMETypeEnabled": {
+                    "description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, and otherwise to false. The default value is true.",
+                    "type": "boolean"
+                },
+                "InvalidUserList": {
+                    "description": "A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.",
+                    "items": {
+                        "maxLength": 64,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 0,
+                    "type": "array"
+                },
+                "KMSEncrypted": {
+                    "description": "True to use Amazon S3 server side encryption with your own AWS KMS key, or false to use a key managed by Amazon S3. Optional.",
+                    "type": "boolean"
+                },
+                "KMSKey": {
+                    "description": "The Amazon Resource Name (ARN) of the AWS KMS key used for Amazon S3 server side encryption. This value can only be set when KMSEncrypted is true. Optional.",
+                    "maxLength": 2048,
+                    "minLength": 7,
+                    "type": "string"
+                },
+                "LocationARN": {
+                    "description": "The ARN of the backed storage used for storing file data. ",
+                    "maxLength": 310,
+                    "minLength": 16,
+                    "type": "string"
+                },
+                "ObjectACL": {
+                    "description": "A value that sets the access control list permission for objects in the S3 bucket that a file gateway puts objects into. The default value is \"private\".",
+                    "enum": [
+                        "private",
+                        "public-read",
+                        "public-read-write",
+                        "authenticated-read",
+                        "bucket-owner-read",
+                        "bucket-owner-full-control",
+                        "aws-exec-read"
+                    ],
+                    "type": "string"
+                },
+                "ReadOnly": {
+                    "description": "A value that sets the write status of a file share. This value is true if the write status is read-only, and otherwise false.",
+                    "type": "boolean"
+                },
+                "RequesterPays": {
+                    "description": "A value that sets the access control list permission for objects in the Amazon S3 bucket that a file gateway puts objects into. The default value is <code>private</code>.",
+                    "type": "boolean"
+                },
+                "Role": {
+                    "description": "The ARN of the AWS Identity and Access Management (IAM) role that a file gateway assumes when it accesses the underlying storage. ",
+                    "maxLength": 2048,
+                    "minLength": 20,
+                    "type": "string"
+                },
+                "Tags": {
+                    "description": "<p>A list of up to ten (10) tags can be assigned to the NFS file share. Every tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
+                    "items": {
+                        "description": "A key-value pair that helps you manage, filter, and search for your resource. Allowed characters: letters, white space, and numbers, representable in UTF-8, and the following characters: + - = . _ : /",
+                        "properties": {
+                            "Key": {
+                                "description": "Tag key (String). The key can't start with aws:. ",
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "pattern": "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+                                "type": "string"
+                            },
+                            "Value": {
+                                "description": "Value of the tag key.",
+                                "maxLength": 256,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Key",
+                            "Value"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "ValidUserList": {
+                    "description": "A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.",
+                    "items": {
+                        "maxLength": 64,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "maxItems": 100,
+                    "minItems": 0,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "ClientToken",
+                "GatewayARN",
+                "Role",
+                "LocationARN"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

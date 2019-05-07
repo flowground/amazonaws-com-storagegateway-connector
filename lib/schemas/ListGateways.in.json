@@ -1,0 +1,62 @@
+{
+    "type": "object",
+    "properties": {
+        "Limit": {
+            "required": false,
+            "type": "string"
+        },
+        "Marker": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "<p>A JSON object containing zero or more of the following fields:</p> <ul> <li> <p> <a>ListGatewaysInput$Limit</a> </p> </li> <li> <p> <a>ListGatewaysInput$Marker</a> </p> </li> </ul>",
+            "example": {
+                "Limit": 2,
+                "Marker": "1"
+            },
+            "properties": {
+                "Limit": {
+                    "description": "Specifies that the list of gateways returned be limited to the specified number of items.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "Marker": {
+                    "description": "An opaque string that indicates the position at which to begin the returned list of gateways.",
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
